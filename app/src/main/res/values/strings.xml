@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Room with Kotlin Coroutine</string>
+    <string name="News">News</string>
+    <string name="opinion_poll">Opinion Poll</string>
+    <string name="Menu">Menu</string>
+</resources>
