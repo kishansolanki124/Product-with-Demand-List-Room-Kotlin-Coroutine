@@ -5,37 +5,48 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.roomwithkotlincoroutine.db.DatabaseHelper
+import com.app.roomwithkotlincoroutine.db.Discount
 import com.app.roomwithkotlincoroutine.db.Product
+import com.app.roomwithkotlincoroutine.db.ProductWithCoupon
 import kotlinx.coroutines.launch
 
 class RoomDBViewModel(private val dbHelper: DatabaseHelper) : ViewModel() {
 
-    private val users = MutableLiveData<List<Product>>()
+    private val productWithCoupon = MutableLiveData<List<ProductWithCoupon>>()
 
     init {
-        fetchUsers()
+        fetchProductWithCoupon()
     }
 
-    fun fetchUsers() {
+    fun fetchProductWithCoupon() {
         viewModelScope.launch {
-            //users.postValue(Resource.loading(null))
-            val usersFromDb = dbHelper.getUsers()
-            if (usersFromDb.isEmpty()) {
-                users.postValue(usersFromDb)
-            } else {
-                users.postValue(usersFromDb)
-            }
+            val usersFromDb = dbHelper.getProductWithDiscount()
+            productWithCoupon.postValue(usersFromDb)
         }
     }
 
-    fun addUser(product: Product) {
+    private fun addUser(product: Product) {
         viewModelScope.launch {
             dbHelper.insert(product)
             //users.postValue(Resource.success(usersFromDb))
         }
     }
 
-    fun getUsers(): LiveData<List<Product>> {
-        return users
+    fun addDiscount(discount: Discount, title: String, description: String) {
+        viewModelScope.launch {
+            val id = dbHelper.insertDiscount(discount)
+            addUser(
+                Product(
+                    name = title,
+                    email = description,
+                    avatar = "",
+                    discountId = id.toInt()
+                )
+            )
+        }
+    }
+
+    fun getProductWithCoupon(): LiveData<List<ProductWithCoupon>> {
+        return productWithCoupon
     }
 }

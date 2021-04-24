@@ -19,4 +19,7 @@ interface ProductDao {
 
     @Delete
     suspend fun delete(user: Product)
+
+    @Query("SELECT * FROM product join Discount on product.discountId = Discount.id ")
+    suspend fun getProductWithDiscount(): List<ProductWithCoupon>
 }

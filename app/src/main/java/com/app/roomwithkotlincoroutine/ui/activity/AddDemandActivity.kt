@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.app.roomwithkotlincoroutine.R
-import com.app.roomwithkotlincoroutine.databinding.ActivityAddProductBinding
+import com.app.roomwithkotlincoroutine.databinding.ActivityAddDemandBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
 import com.app.roomwithkotlincoroutine.db.Discount
@@ -19,16 +19,16 @@ import com.app.roomwithkotlincoroutine.showToast
 import com.app.roomwithkotlincoroutine.util.ViewModelFactory
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
 
-class AddProductActivity : AppCompatActivity() {
+class AddDemandActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAddProductBinding
+    private lateinit var binding: ActivityAddDemandBinding
 
     private lateinit var viewModel: RoomDBViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityAddProductBinding.inflate(layoutInflater)
+        binding = ActivityAddDemandBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(
