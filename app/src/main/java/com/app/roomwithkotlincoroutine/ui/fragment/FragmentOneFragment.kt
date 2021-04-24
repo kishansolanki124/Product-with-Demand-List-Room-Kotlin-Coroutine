@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.roomwithkotlincoroutine.databinding.FragmentNewsHomeBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
-import com.app.roomwithkotlincoroutine.db.ProductWithCoupon
+import com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon
 import com.app.roomwithkotlincoroutine.showToast
 import com.app.roomwithkotlincoroutine.ui.activity.AddProductActivity
 import com.app.roomwithkotlincoroutine.ui.adapter.ProductListAdapter

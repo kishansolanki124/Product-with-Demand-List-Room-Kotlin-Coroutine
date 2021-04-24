@@ -5,25 +5,27 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.roomwithkotlincoroutine.databinding.ActivityAddDemandBinding
+import com.app.roomwithkotlincoroutine.databinding.ActivitySelectProductBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
 import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
+import com.app.roomwithkotlincoroutine.toMultiSelect
 import com.app.roomwithkotlincoroutine.ui.adapter.SelectProductListAdapter
 import com.app.roomwithkotlincoroutine.util.ViewModelFactory
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
 
-class AddDemandActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAddDemandBinding
+class SelectProductListActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySelectProductBinding
+    private lateinit var viewModel: RoomDBViewModel
     private lateinit var selectProductListAdapter: SelectProductListAdapter
     private lateinit var layoutManager: LinearLayoutManager
-    private lateinit var viewModel: RoomDBViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityAddDemandBinding.inflate(layoutInflater)
+        binding = ActivitySelectProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(
@@ -34,30 +36,30 @@ class AddDemandActivity : AppCompatActivity() {
             )
         ).get(RoomDBViewModel::class.java)
 
-        binding.btAddUpdate.setOnClickListener {
-
+        binding.btSaveSelection.setOnClickListener {
+            println(selectProductListAdapter.getList())
+            val resultIntent = Intent()
+            resultIntent.putExtra("productlist", selectProductListAdapter.getList())
+            setResult(100, resultIntent)
+            finish()
         }
 
-        binding.fbAddProduct.setOnClickListener {
-            startActivityForResult(Intent(this, SelectProductListActivity::class.java), 100)
-        }
+        viewModel.getProductWithCoupon().observe(this, {
+
+            val multiSelectList = ArrayList<ProductMuliSelect>()
+            for (item in it) {
+                multiSelectList.add(item.toMultiSelect())
+            }
+            selectProductListAdapter.setItem(multiSelectList)
+        })
 
         //recyclerview
         layoutManager = LinearLayoutManager(this)
-        binding.rvSelectedProducts.layoutManager = layoutManager
+        binding.rvSelectProduct.layoutManager = layoutManager
 
         selectProductListAdapter = SelectProductListAdapter {
 
         }
-        binding.rvSelectedProducts.adapter = selectProductListAdapter
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == 100) {
-            val xyz: ArrayList<ProductMuliSelect> =
-                data!!.getSerializableExtra("productlist") as ArrayList<ProductMuliSelect>
-            selectProductListAdapter.setItem(xyz)
-        }
+        binding.rvSelectProduct.adapter = selectProductListAdapter
     }
 }

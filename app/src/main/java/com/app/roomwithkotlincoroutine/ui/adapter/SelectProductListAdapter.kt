@@ -1,15 +1,16 @@
 package com.app.roomwithkotlincoroutine.ui.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.roomwithkotlincoroutine.databinding.ItemVatanNuGhamBinding
-import com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon
+import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
 
-class ProductListAdapter(private val itemClick: (ProductWithCoupon) -> Unit) :
-    RecyclerView.Adapter<ProductListAdapter.HomeOffersViewHolder>() {
+class SelectProductListAdapter(private val itemClick: (ProductMuliSelect) -> Unit) :
+    RecyclerView.Adapter<SelectProductListAdapter.HomeOffersViewHolder>() {
 
-    private var list: ArrayList<ProductWithCoupon> = ArrayList()
+    private var list: ArrayList<ProductMuliSelect> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeOffersViewHolder {
 
@@ -27,9 +28,13 @@ class ProductListAdapter(private val itemClick: (ProductWithCoupon) -> Unit) :
         holder.bindForecast(list[position])
     }
 
-    fun setItem(list: ArrayList<ProductWithCoupon>) {
+    fun setItem(list: ArrayList<ProductMuliSelect>) {
         this.list = list
         notifyDataSetChanged()
+    }
+
+    fun getList(): ArrayList<ProductMuliSelect> {
+        return this.list
     }
 
     fun reset() {
@@ -42,10 +47,10 @@ class ProductListAdapter(private val itemClick: (ProductWithCoupon) -> Unit) :
 
     class HomeOffersViewHolder(
         private val binding: ItemVatanNuGhamBinding,
-        private val itemClick: (ProductWithCoupon) -> Unit
+        private val itemClick: (ProductMuliSelect) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindForecast(
-            firebaseMessageModel: ProductWithCoupon
+            firebaseMessageModel: ProductMuliSelect
         ) {
             with(firebaseMessageModel) {
 //                Glide.with(itemView.ivVatan.context)
@@ -57,7 +62,11 @@ class ProductListAdapter(private val itemClick: (ProductWithCoupon) -> Unit) :
                 binding.tvDiscountType.text =
                     firebaseMessageModel.type.toString() + firebaseMessageModel.amount.toString()
 
+                binding.llProduct.setBackgroundColor(if (firebaseMessageModel.selected) Color.LTGRAY else Color.WHITE)
+
                 itemView.setOnClickListener {
+                    firebaseMessageModel.selected = (!firebaseMessageModel.selected)
+                    binding.llProduct.setBackgroundColor(if (firebaseMessageModel.selected) Color.LTGRAY else Color.WHITE)
                     itemClick(this)
                 }
             }

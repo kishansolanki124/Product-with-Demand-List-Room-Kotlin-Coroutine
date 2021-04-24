@@ -1,4 +1,4 @@
-package com.app.roomwithkotlincoroutine.db
+package com.app.roomwithkotlincoroutine.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

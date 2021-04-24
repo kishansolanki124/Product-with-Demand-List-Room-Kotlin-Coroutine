@@ -1,7 +1,10 @@
-package com.app.roomwithkotlincoroutine.db
+package com.app.roomwithkotlincoroutine.db.entity
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
+import androidx.room.PrimaryKey
 
 @Entity(
     foreignKeys = [ForeignKey(
@@ -17,9 +20,4 @@ data class Product(
     @ColumnInfo(name = "email") val email: String?,
     @ColumnInfo(name = "avatar") val avatar: String?,
     @ColumnInfo(name = "discountId") val discountId: Int
-)
-
-data class ProductWithCoupon(
-    val id: Int = 0, val name: String?, val email: String?, val avatar: String?, val discountId: Int,
-    val type: String?, val amount: Double?
 )

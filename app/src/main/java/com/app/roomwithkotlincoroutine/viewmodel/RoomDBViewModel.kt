@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.roomwithkotlincoroutine.db.DatabaseHelper
-import com.app.roomwithkotlincoroutine.db.Discount
-import com.app.roomwithkotlincoroutine.db.Product
-import com.app.roomwithkotlincoroutine.db.ProductWithCoupon
+import com.app.roomwithkotlincoroutine.db.entity.Discount
+import com.app.roomwithkotlincoroutine.db.entity.Product
+import com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon
 import kotlinx.coroutines.launch
 
 class RoomDBViewModel(private val dbHelper: DatabaseHelper) : ViewModel() {

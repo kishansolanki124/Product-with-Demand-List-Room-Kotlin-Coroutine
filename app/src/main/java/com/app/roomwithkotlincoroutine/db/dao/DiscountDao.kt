@@ -1,9 +1,10 @@
-package com.app.roomwithkotlincoroutine.db
+package com.app.roomwithkotlincoroutine.db.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.app.roomwithkotlincoroutine.db.entity.Discount
 
 @Dao
 interface DiscountDao {

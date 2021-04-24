@@ -8,10 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RoomWithKotlinCoroutine">
-        <activity android:name=".ui.activity.AddProductActivity">
-
-        </activity>
+        android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.AddProductActivity" />
+        <activity android:name=".ui.activity.SelectProductListActivity" />
+        <activity android:name=".ui.activity.AddDemandActivity" />
     </application>
-
 </manifest>

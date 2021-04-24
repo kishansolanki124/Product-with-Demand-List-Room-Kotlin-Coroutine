@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
+import com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon
 import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import java.io.FileOutputStream
@@ -206,3 +208,12 @@ fun EditText.setMultiLineCapSentencesAndNextAction() {
     imeOptions = EditorInfo.IME_ACTION_NEXT
     setRawInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES or InputType.TYPE_TEXT_FLAG_MULTI_LINE)
 }
+
+fun ProductWithCoupon.toMultiSelect() = ProductMuliSelect(
+    id = id,
+    name = name,
+    email = email, avatar = avatar,
+    discountId = discountId,
+    type = type,
+    amount = amount
+)
