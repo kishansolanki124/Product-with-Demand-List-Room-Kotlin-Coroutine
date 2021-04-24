@@ -21,7 +21,6 @@ import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
 class FragmentOneFragment : Fragment() {
 
     private lateinit var binding: FragmentNewsHomeBinding
-
     private lateinit var viewModel: RoomDBViewModel
     private lateinit var vatanNuGhamAdapter: ProductListAdapter
     private lateinit var layoutManager: LinearLayoutManager

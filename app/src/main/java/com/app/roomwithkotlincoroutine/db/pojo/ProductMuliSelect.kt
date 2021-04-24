@@ -9,6 +9,8 @@ data class ProductMuliSelect(
     val avatar: String?,
     val discountId: Int,
     val type: String?,
-    val amount: Double?,
+    val amount: Double,
+    var quantity: Int = 1,
+    var price: Double,
     var selected: Boolean = false
 ) : Serializable

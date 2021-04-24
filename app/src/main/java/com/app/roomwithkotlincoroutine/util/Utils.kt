@@ -215,5 +215,6 @@ fun ProductWithCoupon.toMultiSelect() = ProductMuliSelect(
     email = email, avatar = avatar,
     discountId = discountId,
     type = type,
-    amount = amount
+    amount = amount,
+    price = price
 )

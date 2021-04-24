@@ -14,9 +14,9 @@ import com.app.roomwithkotlincoroutine.ui.adapter.SelectProductListAdapter
 import com.app.roomwithkotlincoroutine.util.ViewModelFactory
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
 
-
 class SelectProductListActivity : AppCompatActivity() {
 
+    private lateinit var productmenulist: ArrayList<ProductMuliSelect>
     private lateinit var binding: ActivitySelectProductBinding
     private lateinit var viewModel: RoomDBViewModel
     private lateinit var selectProductListAdapter: SelectProductListAdapter
@@ -27,6 +27,9 @@ class SelectProductListActivity : AppCompatActivity() {
 
         binding = ActivitySelectProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        productmenulist =
+            intent.getSerializableExtra("productlist") as ArrayList<ProductMuliSelect>
 
         viewModel = ViewModelProvider(
             this, ViewModelFactory(
@@ -45,11 +48,14 @@ class SelectProductListActivity : AppCompatActivity() {
         }
 
         viewModel.getProductWithCoupon().observe(this, {
-
             val multiSelectList = ArrayList<ProductMuliSelect>()
+            multiSelectList.addAll(productmenulist)
             for (item in it) {
-                multiSelectList.add(item.toMultiSelect())
+                if (!multiSelectList.any { item2 -> item2.id == item.id }) {
+                    multiSelectList.add(item.toMultiSelect())
+                }
             }
+
             selectProductListAdapter.setItem(multiSelectList)
         })
 

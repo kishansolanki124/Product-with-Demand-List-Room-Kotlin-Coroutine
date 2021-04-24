@@ -48,7 +48,8 @@ class AddProductActivity : AppCompatActivity() {
                         ) binding.etDiscountAMount.text.toString().toDouble() else 0.0)
                     ),
                     binding.etTitle.text.toString(),
-                    binding.etDescription.text.toString()
+                    binding.etDescription.text.toString(),
+                    binding.etProductPrice.text.toString().toDouble()
                 )
 
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -114,8 +115,25 @@ class AddProductActivity : AppCompatActivity() {
                 false
             }
 
+            TextUtils.isEmpty(binding.etProductPrice.text.toString()) -> {
+                showToast("add price")
+                false
+            }
+
+            (binding.etProductPrice.text.toString().toDouble() <= 0) -> {
+                showToast("price should be greater than 0")
+                false
+            }
+
             (binding.spTNC.selectedItem.toString() != "none" && TextUtils.isEmpty(binding.etDiscountAMount.text.toString())) -> {
                 showToast("add discount ${binding.spTNC.selectedItem}")
+                false
+            }
+
+            (binding.spTNC.selectedItem.toString() == "amount" && binding.etDiscountAMount.text.toString()
+                .toDouble() >
+                    binding.etProductPrice.text.toString().toDouble()) -> {
+                showToast("discount cant be more than product price")
                 false
             }
 

@@ -54,6 +54,7 @@ class ProductListAdapter(private val itemClick: (ProductWithCoupon) -> Unit) :
 
                 binding.tvProductName.text = firebaseMessageModel.name
                 binding.tvProductDescription.text = firebaseMessageModel.email
+                binding.tvProductPrice.text = firebaseMessageModel.price.toString()
                 binding.tvDiscountType.text =
                     firebaseMessageModel.type.toString() + firebaseMessageModel.amount.toString()
 

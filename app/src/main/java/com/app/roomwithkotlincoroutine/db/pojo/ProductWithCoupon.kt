@@ -7,5 +7,6 @@ data class ProductWithCoupon(
     val avatar: String?,
     val discountId: Int,
     val type: String?,
-    val amount: Double?
+    val amount: Double,
+    val price: Double
 )

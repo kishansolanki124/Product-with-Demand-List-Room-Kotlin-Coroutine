@@ -22,10 +22,49 @@
         android:id="@+id/rvSelectedProducts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btAddUpdate"
+        android:layout_above="@id/llAMount"
         android:layout_below="@id/etPartyName"
         android:paddingVertical="@dimen/dp_5"
         tools:listitem="@layout/item_selected_products" />
+
+    <LinearLayout
+        android:id="@+id/llAMount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btAddUpdate"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_5"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_14"
+            tools:text="Amount:\n 45644545455" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_5"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_14"
+            tools:text="Discount:\n 45644545455" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNetAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_5"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_14"
+            tools:text="net AMount:\n 45644545455" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btAddUpdate"

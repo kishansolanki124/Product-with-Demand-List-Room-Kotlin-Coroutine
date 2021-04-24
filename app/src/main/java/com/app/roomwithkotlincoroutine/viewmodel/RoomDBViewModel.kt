@@ -32,7 +32,7 @@ class RoomDBViewModel(private val dbHelper: DatabaseHelper) : ViewModel() {
         }
     }
 
-    fun addDiscount(discount: Discount, title: String, description: String) {
+    fun addDiscount(discount: Discount, title: String, description: String, price: Double) {
         viewModelScope.launch {
             val id = dbHelper.insertDiscount(discount)
             addUser(
@@ -40,6 +40,7 @@ class RoomDBViewModel(private val dbHelper: DatabaseHelper) : ViewModel() {
                     name = title,
                     email = description,
                     avatar = "",
+                    price = price,
                     discountId = id.toInt()
                 )
             )
