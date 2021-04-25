@@ -4,6 +4,7 @@ import com.app.roomwithkotlincoroutine.db.entity.Demand
 import com.app.roomwithkotlincoroutine.db.entity.DemandTransaction
 import com.app.roomwithkotlincoroutine.db.entity.Discount
 import com.app.roomwithkotlincoroutine.db.entity.Product
+import com.app.roomwithkotlincoroutine.db.pojo.DemandTransactionAndProductMultiSelect
 import com.app.roomwithkotlincoroutine.db.pojo.DemandWithProduct
 import com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon
 
@@ -21,6 +22,10 @@ interface DatabaseHelper {
 
     suspend fun insertDemand(users: Demand): Long
 
+    suspend fun updateDemand(users: Demand)
+
+    suspend fun deleteAllExisting(demandId: Int)
+
     suspend fun getProductWithDiscount(): List<ProductWithCoupon>
 
     suspend fun getAllDemands(): List<DemandWithProduct>
@@ -28,4 +33,6 @@ interface DatabaseHelper {
     suspend fun getDemandList(): List<DemandWithProduct>
 
     suspend fun insertTransaction(users: DemandTransaction)
+
+    suspend fun findAllByDemandId(demandId : Int) : List<DemandTransactionAndProductMultiSelect>
 }

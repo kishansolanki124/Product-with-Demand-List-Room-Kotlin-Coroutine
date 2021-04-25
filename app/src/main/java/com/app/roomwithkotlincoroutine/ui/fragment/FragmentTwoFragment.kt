@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.roomwithkotlincoroutine.databinding.FragmentTwoBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
-import com.app.roomwithkotlincoroutine.db.entity.Demand
 import com.app.roomwithkotlincoroutine.db.pojo.DemandWithProduct
 import com.app.roomwithkotlincoroutine.ui.activity.AddDemandActivity
 import com.app.roomwithkotlincoroutine.ui.adapter.DemandListAdapter
@@ -63,7 +62,12 @@ class FragmentTwoFragment : Fragment() {
         binding.rvVatanNuGham.layoutManager = layoutManager
 
         demandListAdapter = DemandListAdapter {
-
+            startActivityForResult(
+                Intent(requireContext(), AddDemandActivity::class.java).putExtra(
+                    "demand",
+                    it
+                ), 100
+            )
         }
         binding.rvVatanNuGham.adapter = demandListAdapter
     }

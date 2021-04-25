@@ -13,6 +13,7 @@ import com.app.roomwithkotlincoroutine.databinding.ActivityAddDemandBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
 import com.app.roomwithkotlincoroutine.db.entity.Demand
+import com.app.roomwithkotlincoroutine.db.pojo.DemandWithProduct
 import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
 import com.app.roomwithkotlincoroutine.ui.adapter.SelectedProductListAdapter
 import com.app.roomwithkotlincoroutine.util.ViewModelFactory
@@ -26,6 +27,7 @@ class AddDemandActivity : AppCompatActivity() {
     private lateinit var selectProductListAdapter: SelectedProductListAdapter
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var viewModel: RoomDBViewModel
+    private var demandWithProduct: DemandWithProduct? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,20 +43,60 @@ class AddDemandActivity : AppCompatActivity() {
             )
         ).get(RoomDBViewModel::class.java)
 
+
+        viewModel.getDemandTransactionList().observe(this, {
+            val productMultiSelectList = ArrayList<ProductMuliSelect>()
+            for (item in it) {
+                productMultiSelectList.add(
+                    ProductMuliSelect(
+                        name = item.name,
+                        email = item.email,
+                        avatar = item.avatar,
+                        type = item.type,
+                        discountId = item.discountId,
+                        amount = item.amount,
+                        quantity = item.quantity,
+                        price = item.price,
+                        id = item.productId,
+                        selected = true,
+                    )
+                )
+            }
+
+            selectProductListAdapter.setItem(productMultiSelectList)
+            //setupAmounts()
+        })
+
         binding.btAddUpdate.setOnClickListener {
             if (areFieldsValid()) {
-                viewModel.addDemand(
-                    Demand(
-                        name = binding.etPartyName.text.toString(),
-                        status = "In-Progress",
-                        totalAmount = binding.tvAmount.text.toString().toDouble(),
-                        totalDiscount = binding.tvDiscount.text.toString().toDouble(),
-                        netAmount = binding.tvNetAmount.text.toString().toDouble(),
-                        createdDate = Calendar.getInstance().timeInMillis,
-                        updatedDate = Calendar.getInstance().timeInMillis
-                    ),
-                    selectProductListAdapter.getList()
-                )
+                if (null != demandWithProduct) {
+                    viewModel.updateDemand(
+                        Demand(
+                            id = demandWithProduct!!.id,
+                            name = binding.etPartyName.text.toString(),
+                            status = "In-Progress",
+                            totalAmount = binding.tvAmount.text.toString().toDouble(),
+                            totalDiscount = binding.tvDiscount.text.toString().toDouble(),
+                            netAmount = binding.tvNetAmount.text.toString().toDouble(),
+                            createdDate = Calendar.getInstance().timeInMillis,
+                            updatedDate = Calendar.getInstance().timeInMillis
+                        ),
+                        selectProductListAdapter.getList()
+                    )
+                } else {
+                    viewModel.addDemand(
+                        Demand(
+                            name = binding.etPartyName.text.toString(),
+                            status = "In-Progress",
+                            totalAmount = binding.tvAmount.text.toString().toDouble(),
+                            totalDiscount = binding.tvDiscount.text.toString().toDouble(),
+                            netAmount = binding.tvNetAmount.text.toString().toDouble(),
+                            createdDate = Calendar.getInstance().timeInMillis,
+                            updatedDate = Calendar.getInstance().timeInMillis
+                        ),
+                        selectProductListAdapter.getList()
+                    )
+                }
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     setResult(100)
@@ -70,7 +112,6 @@ class AddDemandActivity : AppCompatActivity() {
             )
         }
 
-        //recyclerview
         layoutManager = LinearLayoutManager(this)
         binding.rvSelectedProducts.layoutManager = layoutManager
 
@@ -92,6 +133,21 @@ class AddDemandActivity : AppCompatActivity() {
         )
 
         binding.rvSelectedProducts.adapter = selectProductListAdapter
+
+        if (null != intent.getSerializableExtra("demand")) {
+            demandWithProduct = intent.getSerializableExtra("demand") as DemandWithProduct
+            setupDemand()
+        }
+    }
+
+    private fun setupDemand() {
+        binding.etPartyName.setText(demandWithProduct!!.name)
+        binding.tvAmount.text = demandWithProduct!!.total_amount.toString()
+        binding.tvDiscount.text = demandWithProduct!!.total_discount.toString()
+        binding.tvNetAmount.text = demandWithProduct!!.net_amount.toString()
+
+        //fetch product list and set it in recyclerview list
+        viewModel.findAllByDemandId(demandWithProduct!!.id)
     }
 
     private fun areFieldsValid(): Boolean {
@@ -110,16 +166,6 @@ class AddDemandActivity : AppCompatActivity() {
         }
 
 
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == 100) {
-            val productmenulist: ArrayList<ProductMuliSelect> =
-                data!!.getSerializableExtra("productlist") as ArrayList<ProductMuliSelect>
-            selectProductListAdapter.setItem(productmenulist)
-            setupAmounts()
-        }
     }
 
     private fun setupAmounts() {
@@ -149,5 +195,15 @@ class AddDemandActivity : AppCompatActivity() {
         binding.tvAmount.text = amount.toString()
         binding.tvDiscount.text = discountAMount.toString()
         binding.tvNetAmount.text = netAMount.toString()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == 100) {
+            val productMenuList: ArrayList<ProductMuliSelect> =
+                data!!.getSerializableExtra("productlist") as ArrayList<ProductMuliSelect>
+            selectProductListAdapter.setItem(productMenuList)
+            setupAmounts()
+        }
     }
 }

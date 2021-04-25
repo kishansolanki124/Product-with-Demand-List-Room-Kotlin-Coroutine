@@ -1,9 +1,6 @@
 package com.app.roomwithkotlincoroutine.db.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.app.roomwithkotlincoroutine.db.entity.Demand
 import com.app.roomwithkotlincoroutine.db.pojo.DemandWithProduct
 
@@ -24,6 +21,9 @@ interface DemandDao {
 
     @Insert
     suspend fun insert(users: Demand): Long
+
+    @Update
+    suspend fun update(users: Demand)
 
     @Delete
     suspend fun delete(user: Demand)
