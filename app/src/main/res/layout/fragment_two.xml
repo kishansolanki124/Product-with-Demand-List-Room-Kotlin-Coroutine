@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvVatanNuGham"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:paddingBottom="@dimen/dp_5"
+        tools:listitem="@layout/item_vatan_nu_gham" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbAdd"
@@ -12,4 +22,4 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/dp_20"
         android:clickable="true" />
-</LinearLayout>
+</RelativeLayout>

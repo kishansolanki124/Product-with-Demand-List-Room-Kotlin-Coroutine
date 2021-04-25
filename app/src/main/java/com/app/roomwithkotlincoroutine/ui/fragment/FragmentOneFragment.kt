@@ -12,10 +12,10 @@ import com.app.roomwithkotlincoroutine.databinding.FragmentNewsHomeBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
 import com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon
-import com.app.roomwithkotlincoroutine.showToast
 import com.app.roomwithkotlincoroutine.ui.activity.AddProductActivity
 import com.app.roomwithkotlincoroutine.ui.adapter.ProductListAdapter
 import com.app.roomwithkotlincoroutine.util.ViewModelFactory
+import com.app.roomwithkotlincoroutine.util.showSnackBar
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
 
 class FragmentOneFragment : Fragment() {
@@ -31,6 +31,9 @@ class FragmentOneFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNewsHomeBinding.inflate(inflater, container, false)
+
+        requireActivity().showSnackBar("Fragment One onCreateView")
+
         return binding.root
     }
 
@@ -43,6 +46,7 @@ class FragmentOneFragment : Fragment() {
                 100
             )
         }
+
         //activity!!.showToast("Fragment One")
         viewModel = ViewModelProvider(
             this, ViewModelFactory(
@@ -70,11 +74,6 @@ class FragmentOneFragment : Fragment() {
 //            )
         }
         binding.rvVatanNuGham.adapter = vatanNuGhamAdapter
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        requireContext().showToast("Fragment one Detach")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

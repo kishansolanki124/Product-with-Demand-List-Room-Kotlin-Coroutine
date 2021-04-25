@@ -2,6 +2,9 @@ package com.app.roomwithkotlincoroutine.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.text.TextUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -9,11 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.roomwithkotlincoroutine.databinding.ActivityAddDemandBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
+import com.app.roomwithkotlincoroutine.db.entity.Demand
 import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
-import com.app.roomwithkotlincoroutine.showToast
 import com.app.roomwithkotlincoroutine.ui.adapter.SelectedProductListAdapter
 import com.app.roomwithkotlincoroutine.util.ViewModelFactory
+import com.app.roomwithkotlincoroutine.util.showSnackBar
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
+import java.util.*
 
 class AddDemandActivity : AppCompatActivity() {
 
@@ -37,7 +42,25 @@ class AddDemandActivity : AppCompatActivity() {
         ).get(RoomDBViewModel::class.java)
 
         binding.btAddUpdate.setOnClickListener {
+            if (areFieldsValid()) {
+                viewModel.addDemand(
+                    Demand(
+                        name = binding.etPartyName.text.toString(),
+                        status = "In-Progress",
+                        totalAmount = binding.tvAmount.text.toString().toDouble(),
+                        totalDiscount = binding.tvDiscount.text.toString().toDouble(),
+                        netAmount = binding.tvNetAmount.text.toString().toDouble(),
+                        createdDate = Calendar.getInstance().timeInMillis,
+                        updatedDate = Calendar.getInstance().timeInMillis
+                    ),
+                    selectProductListAdapter.getList()
+                )
 
+                Handler(Looper.getMainLooper()).postDelayed({
+                    setResult(100)
+                    finish()
+                }, 500)
+            }
         }
 
         binding.fbAddProduct.setOnClickListener {
@@ -52,11 +75,12 @@ class AddDemandActivity : AppCompatActivity() {
         binding.rvSelectedProducts.layoutManager = layoutManager
 
         selectProductListAdapter = SelectedProductListAdapter(itemClick = {
-            showToast(it.quantity.toString())
+            showSnackBar(it.quantity.toString())
         },
             deleteClick = {
                 selectProductListAdapter.removeItem(it)
-            }, {
+                setupAmounts()
+            }, updateTotal = {
                 setupAmounts()
             })
 
@@ -68,6 +92,24 @@ class AddDemandActivity : AppCompatActivity() {
         )
 
         binding.rvSelectedProducts.adapter = selectProductListAdapter
+    }
+
+    private fun areFieldsValid(): Boolean {
+        return when {
+            TextUtils.isEmpty(binding.etPartyName.text.toString().trim()) -> {
+                showSnackBar("Please Enter Party Name")
+                false
+            }
+            selectProductListAdapter.getList().isEmpty() -> {
+                showSnackBar("Please Select at least one product")
+                false
+            }
+            else -> {
+                true
+            }
+        }
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -86,20 +128,21 @@ class AddDemandActivity : AppCompatActivity() {
         var netAMount = 0.0
         for (item in selectProductListAdapter.getList()) {
             if (item.type.equals("none")) {
-                amount += item.price
+                amount += (item.price * item.quantity)
+                netAMount += (item.price * item.quantity)
             } else if (item.type.equals("percentage")) {
-                amount += item.price
+                amount += (item.price * item.quantity)
 
                 val percentageAmount = (item.price * item.amount) / 100
-                discountAMount += percentageAmount
+                discountAMount += (percentageAmount * item.quantity)
 
-                val netPaybleAmount = item.price - percentageAmount
-                netAMount += netPaybleAmount
+                val netPayableAmount = item.price - percentageAmount
+                netAMount += (netPayableAmount * item.quantity)
             } else if (item.type.equals("amount")) {
-                amount += item.price
+                amount += (item.price * item.quantity)
 
-                discountAMount += item.amount
-                netAMount += item.price - item.amount
+                discountAMount += (item.amount * item.quantity)
+                netAMount += ((item.price - item.amount) * item.quantity)
             }
         }
 

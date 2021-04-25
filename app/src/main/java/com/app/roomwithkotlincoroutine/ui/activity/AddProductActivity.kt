@@ -15,7 +15,7 @@ import com.app.roomwithkotlincoroutine.databinding.ActivityAddProductBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
 import com.app.roomwithkotlincoroutine.db.entity.Discount
-import com.app.roomwithkotlincoroutine.showToast
+import com.app.roomwithkotlincoroutine.util.showToast
 import com.app.roomwithkotlincoroutine.util.ViewModelFactory
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
 

@@ -9,7 +9,7 @@ import com.app.roomwithkotlincoroutine.databinding.ActivitySelectProductBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
 import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
-import com.app.roomwithkotlincoroutine.toMultiSelect
+import com.app.roomwithkotlincoroutine.util.toMultiSelect
 import com.app.roomwithkotlincoroutine.ui.adapter.SelectProductListAdapter
 import com.app.roomwithkotlincoroutine.util.ViewModelFactory
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel

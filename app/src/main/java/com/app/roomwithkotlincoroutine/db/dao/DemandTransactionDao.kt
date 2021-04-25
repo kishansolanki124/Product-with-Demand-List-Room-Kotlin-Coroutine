@@ -19,7 +19,7 @@ interface DemandTransactionDao {
     suspend fun insertAll(users: List<DemandTransaction>)
 
     @Insert
-    suspend fun insert(users: DemandTransaction): Long
+    suspend fun insert(users: DemandTransaction)
 
     @Delete
     suspend fun delete(user: DemandTransaction)

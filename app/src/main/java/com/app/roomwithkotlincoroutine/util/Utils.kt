@@ -1,4 +1,4 @@
-package com.app.roomwithkotlincoroutine
+package com.app.roomwithkotlincoroutine.util
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.app.roomwithkotlincoroutine.BuildConfig
+import com.app.roomwithkotlincoroutine.R
 import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
 import com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon
 import com.google.android.material.snackbar.Snackbar
@@ -58,6 +60,16 @@ fun showSnackBar(message: String?, activity: Activity?) {
         hideKeyboard(activity)
         Snackbar.make(
             activity.findViewById(android.R.id.content),
+            message, Snackbar.LENGTH_SHORT
+        ).show()
+    }
+}
+
+fun Activity.showSnackBar(message: String?) {
+    if (null != message) {
+        hideKeyboard(this)
+        Snackbar.make(
+            this.findViewById(android.R.id.content),
             message, Snackbar.LENGTH_SHORT
         ).show()
     }
