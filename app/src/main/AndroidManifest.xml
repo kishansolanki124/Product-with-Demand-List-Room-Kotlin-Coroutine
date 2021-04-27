@@ -16,8 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.AddProductActivity" />
+        <activity
+            android:name=".ui.activity.AddProductActivity"
+            android:label="@string/Add_Product" />
         <activity android:name=".ui.activity.SelectProductListActivity" />
-        <activity android:name=".ui.activity.AddDemandActivity" />
+        <activity
+            android:name=".ui.activity.AddDemandActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/Add_Demand" />
     </application>
 </manifest>

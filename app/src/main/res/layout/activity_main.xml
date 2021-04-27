@@ -10,7 +10,6 @@
         android:id="@+id/fragmentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="?attr/actionBarSize"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:background="@color/bottomnavBG"
+        android:background="@color/colorPrimary"
         app:elevation="0dp"
         app:itemIconSize="@dimen/dp_25"
         app:itemIconTint="@drawable/bottom_tab_color"
@@ -31,6 +30,5 @@
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

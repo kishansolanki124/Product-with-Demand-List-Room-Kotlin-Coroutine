@@ -11,6 +11,7 @@ import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
 import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
 import com.app.roomwithkotlincoroutine.util.toMultiSelect
 import com.app.roomwithkotlincoroutine.ui.adapter.SelectProductListAdapter
+import com.app.roomwithkotlincoroutine.util.AppConstant
 import com.app.roomwithkotlincoroutine.util.ViewModelFactory
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
 
@@ -29,7 +30,7 @@ class SelectProductListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         productmenulist =
-            intent.getSerializableExtra("productlist") as ArrayList<ProductMuliSelect>
+            intent.getSerializableExtra(AppConstant.PRODUCT_LIST) as ArrayList<ProductMuliSelect>
 
         viewModel = ViewModelProvider(
             this, ViewModelFactory(
@@ -42,8 +43,8 @@ class SelectProductListActivity : AppCompatActivity() {
         binding.btSaveSelection.setOnClickListener {
             println(selectProductListAdapter.getList())
             val resultIntent = Intent()
-            resultIntent.putExtra("productlist", selectProductListAdapter.getList())
-            setResult(100, resultIntent)
+            resultIntent.putExtra(AppConstant.PRODUCT_LIST, selectProductListAdapter.getList())
+            setResult(AppConstant.ACTIVITY_RESULT_CODE_100, resultIntent)
             finish()
         }
 

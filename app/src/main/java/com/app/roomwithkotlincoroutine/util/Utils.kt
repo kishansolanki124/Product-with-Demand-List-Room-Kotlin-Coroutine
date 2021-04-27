@@ -18,10 +18,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.app.roomwithkotlincoroutine.BuildConfig
 import com.app.roomwithkotlincoroutine.R
 import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
@@ -32,14 +29,25 @@ import java.io.FileOutputStream
 import java.net.URL
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-fun setRecyclerViewLayoutManager(recyclerView: RecyclerView, context: Context) {
-    val layoutManager = LinearLayoutManager(context)
+fun setRecyclerViewLayoutManager(recyclerView: RecyclerView) {
+    val layoutManager = LinearLayoutManager(recyclerView.context)
     recyclerView.layoutManager = layoutManager
     recyclerView.itemAnimator = DefaultItemAnimator()
     recyclerView.isNestedScrollingEnabled = true
+    recyclerView.addItemDecorationVertical()
+
+}
+
+fun RecyclerView.addItemDecorationVertical() {
+    this.addItemDecoration(
+        DividerItemDecoration(
+            this.context, DividerItemDecoration.VERTICAL
+        )
+    )
 }
 
 fun setGridLayoutManager(recyclerView: RecyclerView, context: Context, spanCount: Int) {
@@ -230,3 +238,22 @@ fun ProductWithCoupon.toMultiSelect() = ProductMuliSelect(
     amount = amount,
     price = price
 )
+
+fun EditText.setActionNext() {
+    this.imeOptions = EditorInfo.IME_ACTION_NEXT
+    this.setRawInputType(InputType.TYPE_CLASS_TEXT)
+}
+
+fun getDate(milliSeconds: Long, dateFormat: String?): String {
+    // Create a DateFormatter object for displaying date in specified format.
+    val formatter = SimpleDateFormat(dateFormat)
+
+    // Create a calendar object that will convert the date and time value in milliseconds to date.
+    val calendar: Calendar = Calendar.getInstance()
+    calendar.timeInMillis = milliSeconds
+    return try {
+        formatter.format(calendar.time)
+    } catch (e: Exception) {
+        ""
+    }
+}

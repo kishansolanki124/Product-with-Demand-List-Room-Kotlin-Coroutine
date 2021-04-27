@@ -8,9 +8,9 @@
         <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
-        <item name="windowActionBar">false</item>
+        <!--        <item name="windowActionBar">false</item>-->
         <item name="android:windowBackground">@android:color/white</item>
-        <item name="windowNoTitle">true</item>
+        <!--        <item name="windowNoTitle">true</item>-->
     </style>
 
     <!--    <style name="FullScreenTheme" parent="Theme.AppCompat.DayNight.NoActionBar">-->

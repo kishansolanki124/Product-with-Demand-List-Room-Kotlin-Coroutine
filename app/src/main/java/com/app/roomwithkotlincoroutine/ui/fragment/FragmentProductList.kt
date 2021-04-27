@@ -7,47 +7,38 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.roomwithkotlincoroutine.databinding.FragmentNewsHomeBinding
+import com.app.roomwithkotlincoroutine.R
+import com.app.roomwithkotlincoroutine.databinding.FragmentProductListBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
 import com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon
 import com.app.roomwithkotlincoroutine.ui.activity.AddProductActivity
 import com.app.roomwithkotlincoroutine.ui.adapter.ProductListAdapter
+import com.app.roomwithkotlincoroutine.util.AppConstant
 import com.app.roomwithkotlincoroutine.util.ViewModelFactory
-import com.app.roomwithkotlincoroutine.util.showSnackBar
+import com.app.roomwithkotlincoroutine.util.setRecyclerViewLayoutManager
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
 
-class FragmentOneFragment : Fragment() {
+class FragmentProductList : Fragment() {
 
-    private lateinit var binding: FragmentNewsHomeBinding
+    private lateinit var binding: FragmentProductListBinding
     private lateinit var viewModel: RoomDBViewModel
-    private lateinit var vatanNuGhamAdapter: ProductListAdapter
-    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var productListAdapter: ProductListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentNewsHomeBinding.inflate(inflater, container, false)
-
-        requireActivity().showSnackBar("Fragment One onCreateView")
-
+    ): View {
+        binding = FragmentProductListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.fbAdd.setOnClickListener {
-            startActivityForResult(
-                Intent(requireContext(), AddProductActivity::class.java),
-                100
-            )
-        }
+        requireActivity().title = getString(R.string.Product)
 
-        //activity!!.showToast("Fragment One")
         viewModel = ViewModelProvider(
             this, ViewModelFactory(
                 DatabaseHelperImpl(
@@ -57,29 +48,27 @@ class FragmentOneFragment : Fragment() {
         ).get(RoomDBViewModel::class.java)
 
         viewModel.getProductWithCoupon().observe(requireActivity(), {
-            vatanNuGhamAdapter.setItem(it as ArrayList<ProductWithCoupon>)
+            productListAdapter.setItem(it as ArrayList<ProductWithCoupon>)
         })
 
-
-        //recyclerview
-        layoutManager = LinearLayoutManager(requireContext())
-        binding.rvVatanNuGham.layoutManager = layoutManager
-
-        vatanNuGhamAdapter = ProductListAdapter {
-//            startActivity(
-//                Intent(
-//                    this,
-//                    VatanNuGhamDetailsActivity::class.java
-//                ).putExtra(AppConstants.VATAN_GHAM_ID, it.id)
-//            )
+        binding.fbAdd.setOnClickListener {
+            startActivityForResult(
+                Intent(requireContext(), AddProductActivity::class.java),
+                AppConstant.ACTIVITY_RESULT_CODE_100
+            )
         }
-        binding.rvVatanNuGham.adapter = vatanNuGhamAdapter
+
+        setRecyclerViewLayoutManager(binding.rvProducts)
+
+        productListAdapter = ProductListAdapter {
+
+        }
+        binding.rvProducts.adapter = productListAdapter
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == 100) {
-            //second check whether they are authorized to download
+        if (resultCode == AppConstant.ACTIVITY_RESULT_CODE_100) {
             viewModel.fetchProductWithCoupon()
         }
     }

@@ -1,6 +1,26 @@
 <resources>
     <string name="app_name">Room with Kotlin Coroutine</string>
-    <string name="News">News</string>
-    <string name="opinion_poll">Opinion Poll</string>
-    <string name="Menu">Menu</string>
+    <string name="Product">Product</string>
+    <string name="Add_Product">Add Product</string>
+    <string name="Demand">Demand</string>
+    <string name="Product_Name">Product Name</string>
+    <string name="Product_Description">Product Description</string>
+    <string name="Product_Price">Product Price</string>
+    <string name="Discount_Type">Discount Type</string>
+    <string name="Product_Discount">Product Discount</string>
+    <string name="Discount_percentage">Discount Percentage</string>
+    <string name="Discount_Amount">Discount Amount</string>
+    <string name="Enter_Title">Enter Product Title</string>
+    <string name="Enter_Desc">Enter Product Description</string>
+    <string name="Enter_Name">Enter Party Name</string>
+    <string name="select_one_product_at_least">Select at least one product</string>
+    <string name="Enter_Price">Enter Product Price</string>
+    <string name="Invalid_Price">Price must be greater than 0</string>
+    <string name="Enter_Discount">Enter Product discount %1$s</string>
+    <string name="Invalid_Discount">Discount can\'t be more than Product Price</string>
+    <string name="Invalid_Discount_2">Discount can\'t be 0</string>
+    <string name="Add_Demand">Add Demand</string>
+    <string name="Party_Name">Party Name</string>
+    <string name="Empty_list">No product selected. Select at least one product to add Demand.</string>
+    <string name="Product_List">Selected Product List</string>
 </resources>

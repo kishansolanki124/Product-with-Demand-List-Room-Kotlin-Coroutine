@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.app.roomwithkotlincoroutine.databinding.ItemVatanNuGhamBinding
+import com.app.roomwithkotlincoroutine.databinding.ItemProductBinding
 import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
 
 class SelectProductListAdapter(private val itemClick: (ProductMuliSelect) -> Unit) :
@@ -15,7 +15,7 @@ class SelectProductListAdapter(private val itemClick: (ProductMuliSelect) -> Uni
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeOffersViewHolder {
 
         val binding =
-            ItemVatanNuGhamBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HomeOffersViewHolder(binding, itemClick)
 
 //        val view =
@@ -46,7 +46,7 @@ class SelectProductListAdapter(private val itemClick: (ProductMuliSelect) -> Uni
     override fun getItemCount(): Int = list.size
 
     class HomeOffersViewHolder(
-        private val binding: ItemVatanNuGhamBinding,
+        private val binding: ItemProductBinding,
         private val itemClick: (ProductMuliSelect) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindForecast(

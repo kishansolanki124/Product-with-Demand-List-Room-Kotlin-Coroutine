@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/dp_10"
     android:orientation="vertical"
     tools:context=".ui.activity.AddProductActivity">
 
@@ -10,27 +11,38 @@
         android:id="@+id/etTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_10"
+        android:layout_margin="@dimen/dp_5"
+        android:hint="@string/Product_Name"
+        android:imeOptions="actionNext"
+        android:inputType="textCapWords"
         android:textColor="@android:color/black"
+        android:textColorHint="@color/gray_hint"
         android:textSize="@dimen/sp_14" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_10"
+        android:layout_margin="@dimen/dp_5"
+        android:hint="@string/Product_Description"
+        android:imeOptions="actionNext"
+        android:inputType="textMultiLine"
+        android:minLines="3"
         android:textColor="@android:color/black"
+        android:textColorHint="@color/gray_hint"
         android:textSize="@dimen/sp_14" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etProductPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_10"
-        android:hint="enter product price"
-        android:inputType="numberDecimal"
+        android:layout_margin="@dimen/dp_5"
+        android:hint="@string/Product_Price"
+        android:imeOptions="actionDone"
+        android:inputType="numberSigned"
         android:maxLength="5"
         android:textColor="@android:color/black"
+        android:textColorHint="@color/gray_hint"
         android:textSize="@dimen/sp_14" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -38,7 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_5"
-        android:text="Discount Type"
+        android:text="@string/Discount_Type"
+        android:textColor="@android:color/black"
         android:textSize="@dimen/sp_14" />
 
     <LinearLayout
@@ -51,7 +64,7 @@
             android:id="@+id/spTNC"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
+            android:layout_margin="@dimen/dp_5"
             android:layout_weight="3"
             android:background="@drawable/spinner_dropdown" />
 
@@ -59,15 +72,24 @@
             android:id="@+id/etDiscountAMount"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
+            android:layout_margin="@dimen/dp_5"
             android:layout_weight="6"
+            android:hint="@string/Product_Discount"
+            android:imeOptions="actionDone"
             android:inputType="numberSigned"
-            android:maxLength="6" />
+            android:maxLength="5"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/gray_hint"
+            android:textSize="@dimen/sp_14" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btAddUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add" />
+        android:layout_margin="@dimen/dp_5"
+        android:background="@color/colorPrimary"
+        android:text="@string/Add_Product"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_16" />
 </LinearLayout>

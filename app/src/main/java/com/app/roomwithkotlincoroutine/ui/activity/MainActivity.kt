@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.app.roomwithkotlincoroutine.R
 import com.app.roomwithkotlincoroutine.databinding.ActivityMainBinding
-import com.app.roomwithkotlincoroutine.ui.fragment.FragmentOneFragment
-import com.app.roomwithkotlincoroutine.ui.fragment.FragmentTwoFragment
+import com.app.roomwithkotlincoroutine.ui.fragment.FragmentProductList
+import com.app.roomwithkotlincoroutine.ui.fragment.FragmentDemandList
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -22,17 +22,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(binding.root)
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(this)
-        switchFragment(FragmentOneFragment(), false)
+        switchFragment(FragmentProductList(), false)
     }
 
     private fun switchFragment(fragment: Fragment, addToBackStack: Boolean) {
-
-        if (fragment !is FragmentOneFragment) {
-            //hideNavigationButton()
-        } else {
-            //showNavigationButton()
-        }
-
         mTransaction = supportFragmentManager.beginTransaction()
         mTransaction.replace(R.id.fragmentContainer, fragment)
         if (addToBackStack) {
@@ -44,14 +37,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         if (binding.bottomNavigationView.selectedItemId != item.itemId) {
             when (item.itemId) {
-                R.id.navigation_news -> {
-                    switchFragment(FragmentOneFragment(), false)
+                R.id.navProduct -> {
+                    switchFragment(FragmentProductList(), false)
                 }
-                R.id.navigation_opinion_poll -> {
-                    switchFragment(FragmentTwoFragment(), false)
-                }
-                R.id.navigation_menu -> {
-                    //switchFragment(MenuFragment(), false)
+                R.id.navDemand -> {
+                    switchFragment(FragmentDemandList(), false)
                 }
             }
         }

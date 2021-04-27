@@ -3,29 +3,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/dp_10"
     android:orientation="vertical"
-    android:padding="@dimen/dp_5"
-    tools:context=".ui.activity.AddProductActivity">
+    tools:context=".ui.activity.AddDemandActivity">
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etPartyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_10"
-        android:hint="Party name"
+        android:layout_margin="@dimen/dp_5"
+        android:hint="@string/Party_Name"
+        android:imeOptions="actionDone"
+        android:inputType="textCapWords"
         android:maxLength="30"
         android:maxLines="1"
         android:textColor="@android:color/black"
+        android:textColorHint="@color/gray_hint"
         android:textSize="@dimen/sp_14" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSelectedProducts"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvProductList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/llAMount"
         android:layout_below="@id/etPartyName"
-        android:paddingVertical="@dimen/dp_5"
-        tools:listitem="@layout/item_selected_products" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/Product_List"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/sp_14"
+        android:visibility="visible" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/llAMount"
+        android:layout_below="@id/tvProductList">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvProductListEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/Empty_list"
+            android:textColor="@color/gray_hint"
+            android:textSize="@dimen/sp_12"
+            android:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSelectedProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/dp_5"
+            android:visibility="gone"
+            tools:listitem="@layout/item_selected_products" />
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/llAMount"

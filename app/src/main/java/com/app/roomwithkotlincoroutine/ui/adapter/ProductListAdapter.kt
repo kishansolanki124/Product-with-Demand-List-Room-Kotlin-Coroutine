@@ -1,9 +1,11 @@
 package com.app.roomwithkotlincoroutine.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.app.roomwithkotlincoroutine.databinding.ItemVatanNuGhamBinding
+import com.app.roomwithkotlincoroutine.databinding.ItemProductBinding
 import com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon
 
 class ProductListAdapter(private val itemClick: (ProductWithCoupon) -> Unit) :
@@ -12,15 +14,9 @@ class ProductListAdapter(private val itemClick: (ProductWithCoupon) -> Unit) :
     private var list: ArrayList<ProductWithCoupon> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeOffersViewHolder {
-
         val binding =
-            ItemVatanNuGhamBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HomeOffersViewHolder(binding, itemClick)
-
-//        val view =
-//            LayoutInflater.from(parent.context).inflate(R.layout.item_vatan_nu_gham, parent, false)
-//        return HomeOffersViewHolder(binding, itemClick
-//        )
     }
 
     override fun onBindViewHolder(holder: HomeOffersViewHolder, position: Int) {
@@ -32,31 +28,32 @@ class ProductListAdapter(private val itemClick: (ProductWithCoupon) -> Unit) :
         notifyDataSetChanged()
     }
 
-    fun reset() {
-        this.list.clear()
-        notifyDataSetChanged()
-    }
-
-
     override fun getItemCount(): Int = list.size
 
     class HomeOffersViewHolder(
-        private val binding: ItemVatanNuGhamBinding,
+        private val binding: ItemProductBinding,
         private val itemClick: (ProductWithCoupon) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bindForecast(
             firebaseMessageModel: ProductWithCoupon
         ) {
             with(firebaseMessageModel) {
-//                Glide.with(itemView.ivVatan.context)
-//                    .load(firebaseMessageModel.up_pro_img)
-//                    .into(itemView.ivVatan)
-
-                binding.tvProductName.text = firebaseMessageModel.name
-                binding.tvProductDescription.text = firebaseMessageModel.email
-                binding.tvProductPrice.text = firebaseMessageModel.price.toString()
-                binding.tvDiscountType.text =
-                    firebaseMessageModel.type.toString() + firebaseMessageModel.amount.toString()
+                binding.tvProductName.text = "Name: " + firebaseMessageModel.name
+                binding.tvProductDescription.text = "Description: " + firebaseMessageModel.email
+                binding.tvProductPrice.text = "Price: " + firebaseMessageModel.price.toString()
+                if (firebaseMessageModel.amount <= 0) {
+                    binding.llDiscountDetail.visibility = View.GONE
+                    binding.tvDiscount.visibility = View.VISIBLE
+                    binding.tvDiscount.text = "Discount: NA"
+                } else {
+                    binding.tvDiscount.visibility = View.GONE
+                    binding.llDiscountDetail.visibility = View.VISIBLE
+                    binding.tvDiscountType.text =
+                        "Discount Type: " + firebaseMessageModel.type.toString()
+                    binding.tvDiscountAmount.text =
+                        ",Amount: " + firebaseMessageModel.amount.toString()
+                }
 
                 itemView.setOnClickListener {
                     itemClick(this)

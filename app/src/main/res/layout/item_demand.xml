@@ -7,50 +7,65 @@
     android:layout_margin="@dimen/dp_10"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvPartyName"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_14"
-        tools:text="Kishan Solanki" />
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPartyName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_5"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_14"
+            tools:text="Party Name: Kishan Solanki" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivEdit"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_margin="@dimen/dp_5"
+            android:src="@drawable/edit" />
+    </LinearLayout>
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
+        android:padding="@dimen/dp_5"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_14"
-        tools:text="Demand Pending" />
+        android:textSize="@dimen/sp_12"
+        tools:text="Status: Pending" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCreatedDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
+        android:padding="@dimen/dp_5"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_14"
-        tools:text="24-04-2021 11:55 PM" />
+        android:textSize="@dimen/sp_12"
+        tools:text="Created Date: 24-04-2021 11:55 PM" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvUpdatedDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
+        android:padding="@dimen/dp_5"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_14"
-        tools:text="24-04-2021 11:55 PM" />
+        android:textSize="@dimen/sp_12"
+        tools:text="Updated Date: 24-04-2021 11:55 PM" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTotalProducts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
+        android:padding="@dimen/dp_5"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_14"
-        tools:text="total Products: 10" />
+        android:textSize="@dimen/sp_12"
+        tools:text="Total Products: 10" />
 
     <LinearLayout
         android:id="@+id/llAMount"
@@ -66,8 +81,8 @@
             android:gravity="center"
             android:padding="@dimen/dp_5"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/sp_14"
-            tools:text="Amount:\n 45644545455" />
+            android:textSize="@dimen/sp_12"
+            tools:text="Amount:\n 500" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDiscount"
@@ -76,8 +91,8 @@
             android:gravity="center"
             android:padding="@dimen/dp_5"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/sp_14"
-            tools:text="Discount:\n 45644545455" />
+            android:textSize="@dimen/sp_12"
+            tools:text="Discount:\n 50" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNetAmount"
@@ -86,7 +101,7 @@
             android:gravity="center"
             android:padding="@dimen/dp_5"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/sp_14"
-            tools:text="net AMount:\n 45644545455" />
+            android:textSize="@dimen/sp_12"
+            tools:text="net Amount:\n 450" />
     </LinearLayout>
 </LinearLayout>
