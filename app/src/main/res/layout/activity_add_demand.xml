@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +17,6 @@
         android:imeOptions="actionDone"
         android:inputType="textCapWords"
         android:maxLength="30"
-        android:maxLines="1"
         android:textColor="@android:color/black"
         android:textColorHint="@color/gray_hint"
         android:textSize="@dimen/sp_14" />
@@ -68,35 +68,84 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvAmount"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_5"
             android:gravity="center"
-            android:padding="@dimen/dp_5"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/sp_14"
-            tools:text="Amount:\n 45644545455" />
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDiscount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/dp_5"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/sp_14"
-            tools:text="Discount:\n 45644545455" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/Amount"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_14" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvNetAmount"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/dp_5"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_14"
+                tools:text="500" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_5"
             android:gravity="center"
-            android:padding="@dimen/dp_5"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/sp_14"
-            tools:text="net AMount:\n 45644545455" />
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/Discount"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_14" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/dp_5"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_14"
+                tools:text="50" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_5"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/Net_Amount"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_14" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNetAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/dp_5"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_14"
+                tools:text="450" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -104,14 +153,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Add" />
+        android:layout_margin="@dimen/dp_5"
+        android:background="@color/colorPrimary"
+        android:text="@string/Save_Demand"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_16" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbAddProduct"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/llAMount"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginEnd="@dimen/dp_20"
-        android:layout_marginBottom="@dimen/dp_100" />
+        android:contentDescription="@string/Demand"
+        app:backgroundTint="@color/colorPrimary"
+        app:srcCompat="@drawable/fb_add"
+        app:tint="@android:color/white" />
 </RelativeLayout>

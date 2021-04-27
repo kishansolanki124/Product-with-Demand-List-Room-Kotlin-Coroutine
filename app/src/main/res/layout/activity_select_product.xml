@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:orientation="vertical"
-    android:padding="@dimen/dp_5"
-    tools:context=".ui.activity.AddProductActivity">
+    android:layout_margin="@dimen/dp_10"
+    tools:context=".ui.activity.SelectProductListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSelectProduct"
@@ -14,7 +12,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/dp_50"
-        tools:listitem="@layout/item_selected_products" />
+        tools:listitem="@layout/item_product" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btSaveSelection"
@@ -22,6 +20,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/dp_10"
-        android:text="save selection" />
+        android:layout_margin="@dimen/dp_5"
+        android:background="@color/colorPrimary"
+        android:paddingHorizontal="@dimen/dp_10"
+        android:scaleY="0.8"
+        android:text="@string/Select_Product"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_16" />
 </RelativeLayout>

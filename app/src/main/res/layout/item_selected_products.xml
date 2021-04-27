@@ -20,16 +20,15 @@
             android:padding="@dimen/dp_5"
             android:textColor="@android:color/black"
             android:textSize="@dimen/sp_14"
-            tools:text="This is product title" />
+            tools:text="Name: Iphone 11 Pro Max" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivDelete"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_25"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:src="@drawable/close_black" />
-
+            android:src="@drawable/delete" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -38,8 +37,8 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_5"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_14"
-        tools:text="This is product Description. This is product Description. This is product Description." />
+        android:textSize="@dimen/sp_12"
+        tools:text="Description: Iphone 11 Pro Max Description is nothing about the phone but its just a phone" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvProductPrice"
@@ -47,59 +46,79 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_5"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_14"
-        tools:text="This is product Description. This is product Description. This is product Description." />
+        android:textSize="@dimen/sp_12"
+        tools:text="Price: 999" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/sp_12"
+        tools:text="Discount: 10%" />
 
     <LinearLayout
+        android:id="@+id/llDiscountDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDiscountType"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="7"
             android:padding="@dimen/dp_5"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/sp_14"
-            tools:text="Discount type: Percentage : 30%" />
+            android:textSize="@dimen/sp_12"
+            tools:text="Type: Percentage" />
 
-        <LinearLayout
-            android:layout_width="0dp"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDiscountAmount"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:padding="@dimen/dp_5"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_12"
+            tools:text="Amount: 10%" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvReduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_5"
+            android:paddingHorizontal="@dimen/dp_10"
+            android:text="@string/minus_sign"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_40" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_10"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:inputType="numberSigned"
+            android:maxLength="3"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_14"
+            tools:text="23" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvReduce"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_5"
-                android:text="a"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvQuantity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="Quantity"
-                android:inputType="numberSigned"
-                android:textSize="@dimen/sp_14" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_5"
-                android:text="n"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_5"
+            android:paddingHorizontal="@dimen/dp_10"
+            android:text="@string/plus_sign"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_40" />
     </LinearLayout>
 </LinearLayout>

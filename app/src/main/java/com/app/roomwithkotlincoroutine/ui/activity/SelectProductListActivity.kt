@@ -4,15 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.roomwithkotlincoroutine.databinding.ActivitySelectProductBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
 import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
-import com.app.roomwithkotlincoroutine.util.toMultiSelect
 import com.app.roomwithkotlincoroutine.ui.adapter.SelectProductListAdapter
 import com.app.roomwithkotlincoroutine.util.AppConstant
 import com.app.roomwithkotlincoroutine.util.ViewModelFactory
+import com.app.roomwithkotlincoroutine.util.setRecyclerViewLayoutManager
+import com.app.roomwithkotlincoroutine.util.toMultiSelect
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
 
 class SelectProductListActivity : AppCompatActivity() {
@@ -21,7 +21,6 @@ class SelectProductListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySelectProductBinding
     private lateinit var viewModel: RoomDBViewModel
     private lateinit var selectProductListAdapter: SelectProductListAdapter
-    private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,9 +59,7 @@ class SelectProductListActivity : AppCompatActivity() {
             selectProductListAdapter.setItem(multiSelectList)
         })
 
-        //recyclerview
-        layoutManager = LinearLayoutManager(this)
-        binding.rvSelectProduct.layoutManager = layoutManager
+        setRecyclerViewLayoutManager(binding.rvSelectProduct)
 
         selectProductListAdapter = SelectProductListAdapter {
 

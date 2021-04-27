@@ -1,6 +1,8 @@
 package com.app.roomwithkotlincoroutine.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.roomwithkotlincoroutine.databinding.ItemSelectedProductsBinding
@@ -61,17 +63,30 @@ class SelectedProductListAdapter(
         private val deleteClick: (Int) -> Unit,
         private val updateTotal: (ProductMuliSelect) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bindForecast(
             firebaseMessageModel: ProductMuliSelect
         ) {
             with(firebaseMessageModel) {
-                binding.tvProductName.text = firebaseMessageModel.name
-                binding.tvProductDescription.text = firebaseMessageModel.email
-                binding.tvProductPrice.text = firebaseMessageModel.price.toString()
-                binding.tvDiscountType.text =
-                    firebaseMessageModel.type.toString() + firebaseMessageModel.amount.toString()
 
-                //binding.llProduct.setBackgroundColor(if (firebaseMessageModel.selected) Color.LTGRAY else Color.WHITE)
+                binding.tvProductName.text = "Name: " + firebaseMessageModel.name
+                binding.tvProductDescription.text = "Description: " + firebaseMessageModel.email
+                binding.tvProductPrice.text = "Price: " + firebaseMessageModel.price.toString()
+                binding.tvQuantity.text = firebaseMessageModel.quantity.toString()
+
+                if (firebaseMessageModel.amount <= 0) {
+                    binding.llDiscountDetail.visibility = View.GONE
+                    binding.tvDiscount.visibility = View.VISIBLE
+                    binding.tvDiscount.text = "Discount: NA"
+                } else {
+                    binding.tvDiscount.visibility = View.GONE
+                    binding.llDiscountDetail.visibility = View.VISIBLE
+                    binding.tvDiscountType.text =
+                        "Discount Type: " + firebaseMessageModel.type.toString() + ", "
+                    binding.tvDiscountAmount.text =
+                        "Amount: " + firebaseMessageModel.amount.toString()
+                }
+
 
                 binding.ivDelete.setOnClickListener {
                     val position = adapterPosition
@@ -89,8 +104,6 @@ class SelectedProductListAdapter(
                     }
                     updateTotal(this)
                 }
-
-                binding.tvQuantity.text = firebaseMessageModel.quantity.toString()
 
                 binding.tvAdd.setOnClickListener {
                     binding.tvQuantity.text =

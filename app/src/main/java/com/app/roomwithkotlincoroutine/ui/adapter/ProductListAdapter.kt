@@ -50,9 +50,9 @@ class ProductListAdapter(private val itemClick: (ProductWithCoupon) -> Unit) :
                     binding.tvDiscount.visibility = View.GONE
                     binding.llDiscountDetail.visibility = View.VISIBLE
                     binding.tvDiscountType.text =
-                        "Discount Type: " + firebaseMessageModel.type.toString()
+                        "Discount Type: " + firebaseMessageModel.type.toString() + ", "
                     binding.tvDiscountAmount.text =
-                        ",Amount: " + firebaseMessageModel.amount.toString()
+                        "Amount: " + firebaseMessageModel.amount.toString()
                 }
 
                 itemView.setOnClickListener {

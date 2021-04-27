@@ -2,6 +2,7 @@
     <string name="app_name">Room with Kotlin Coroutine</string>
     <string name="Product">Product</string>
     <string name="Add_Product">Add Product</string>
+    <string name="Save_Demand">Save Demand</string>
     <string name="Demand">Demand</string>
     <string name="Product_Name">Product Name</string>
     <string name="Product_Description">Product Description</string>
@@ -22,5 +23,12 @@
     <string name="Add_Demand">Add Demand</string>
     <string name="Party_Name">Party Name</string>
     <string name="Empty_list">No product selected. Select at least one product to add Demand.</string>
-    <string name="Product_List">Selected Product List</string>
+    <string name="Product_List">Product List</string>
+    <string name="plus_sign">+</string>
+    <string name="minus_sign">-</string>
+    <string name="Amount">Amount</string>
+    <string name="Net_Amount">Net Amount</string>
+    <string name="Discount">Discount</string>
+    <string name="Select_Product">Select Product</string>
+    <string name="splash_text">Product with Demand App</string>
 </resources>

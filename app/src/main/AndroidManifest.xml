@@ -9,20 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity
+            android:name=".ui.activity.SplashActivity"
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.MainActivity"/>
         <activity
             android:name=".ui.activity.AddProductActivity"
             android:label="@string/Add_Product" />
-        <activity android:name=".ui.activity.SelectProductListActivity" />
+        <activity
+            android:name=".ui.activity.SelectProductListActivity"
+            android:label="@string/Select_Product" />
         <activity
             android:name=".ui.activity.AddDemandActivity"
-            android:windowSoftInputMode="stateHidden"
-            android:label="@string/Add_Demand" />
+            android:label="@string/Add_Demand"
+            android:windowSoftInputMode="stateHidden" />
     </application>
+
 </manifest>
