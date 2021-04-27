@@ -55,6 +55,13 @@ class FragmentDemandList : Fragment() {
 
         viewModel.getDemandList().observe(requireActivity(), {
             demandListAdapter.setItem(it as ArrayList<DemandWithProduct>)
+            if (it.isEmpty()) {
+                binding.tvDemandEmptyList.visibility = View.VISIBLE
+                binding.rvDemand.visibility = View.GONE
+            } else {
+                binding.tvDemandEmptyList.visibility = View.GONE
+                binding.rvDemand.visibility = View.VISIBLE
+            }
         })
 
         setRecyclerViewLayoutManager(binding.rvDemand)

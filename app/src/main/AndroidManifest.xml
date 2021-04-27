@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,16 +19,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MainActivity" />
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.AddProductActivity"
-            android:label="@string/Add_Product" />
+            android:label="@string/Add_Product"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.SelectProductListActivity"
-            android:label="@string/Select_Product" />
+            android:label="@string/Select_Product"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.AddDemandActivity"
             android:label="@string/Add_Demand"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
     </application>
 </manifest>

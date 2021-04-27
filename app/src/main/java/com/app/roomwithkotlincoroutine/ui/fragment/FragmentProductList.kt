@@ -46,6 +46,13 @@ class FragmentProductList : Fragment() {
 
         viewModel.getProductWithCoupon().observe(requireActivity(), {
             productListAdapter.setItem(it as ArrayList<ProductWithCoupon>)
+            if (it.isEmpty()) {
+                binding.tvProductEmptyList.visibility = View.VISIBLE
+                binding.rvProducts.visibility = View.GONE
+            } else {
+                binding.tvProductEmptyList.visibility = View.GONE
+                binding.rvProducts.visibility = View.VISIBLE
+            }
         })
 
         binding.fbAdd.setOnClickListener {

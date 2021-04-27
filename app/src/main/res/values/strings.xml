@@ -22,7 +22,7 @@
     <string name="Invalid_Discount_2">Discount can\'t be 0</string>
     <string name="Add_Demand">Add Demand</string>
     <string name="Party_Name">Party Name</string>
-    <string name="Empty_list">No product selected. Select at least one product to add Demand.</string>
+    <string name="Empty_list">No product selected. Click the \'+\' button to add Product.</string>
     <string name="Product_List">Product List</string>
     <string name="plus_sign">+</string>
     <string name="minus_sign">-</string>
@@ -33,4 +33,6 @@
     <string name="splash_text">Product with Demand App</string>
     <string name="rupee">%1$s\u20B9</string>
     <string name="percentage_x">%d%%</string>
+    <string name="empty_product_list">Click the \'+\' button to add Product.</string>
+    <string name="empty_demand_list">Click the \'+\' button to add Demand.</string>
 </resources>
