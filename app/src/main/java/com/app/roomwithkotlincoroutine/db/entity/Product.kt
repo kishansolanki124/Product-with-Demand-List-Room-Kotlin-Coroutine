@@ -17,8 +17,7 @@ import androidx.room.PrimaryKey
 data class Product(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "name") val name: String?,
-    @ColumnInfo(name = "email") val email: String?,
-    @ColumnInfo(name = "avatar") val avatar: String?,
+    @ColumnInfo(name = "description") val description: String?,
     @ColumnInfo(name = "price") val price: Double?,
     @ColumnInfo(name = "discountId") val discountId: Int
 )

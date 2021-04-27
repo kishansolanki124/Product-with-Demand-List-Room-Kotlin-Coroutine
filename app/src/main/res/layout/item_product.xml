@@ -43,28 +43,28 @@
         android:textColor="@android:color/black"
         tools:text="Discount: 10%" />
 
-    <LinearLayout
-        android:id="@+id/llDiscountDetail"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/llDiscountDetail"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDiscountType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp_5"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/sp_12"
-            tools:text="Type: Percentage" />
+<!--        <androidx.appcompat.widget.AppCompatTextView-->
+<!--            android:id="@+id/tvDiscountType"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="@dimen/dp_5"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="@dimen/sp_12"-->
+<!--            tools:text="Type: Percentage" />-->
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDiscountAmount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp_5"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/sp_12"
-            tools:text="Amount: 10%" />
-    </LinearLayout>
+<!--        <androidx.appcompat.widget.AppCompatTextView-->
+<!--            android:id="@+id/tvDiscountAmount"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="@dimen/dp_5"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="@dimen/sp_12"-->
+<!--            tools:text="Amount: 10%" />-->
+<!--    </LinearLayout>-->
 </LinearLayout>

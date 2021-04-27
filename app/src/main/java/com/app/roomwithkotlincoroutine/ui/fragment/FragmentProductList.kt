@@ -14,9 +14,7 @@ import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
 import com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon
 import com.app.roomwithkotlincoroutine.ui.activity.AddProductActivity
 import com.app.roomwithkotlincoroutine.ui.adapter.ProductListAdapter
-import com.app.roomwithkotlincoroutine.util.AppConstant
-import com.app.roomwithkotlincoroutine.util.ViewModelFactory
-import com.app.roomwithkotlincoroutine.util.setRecyclerViewLayoutManager
+import com.app.roomwithkotlincoroutine.util.*
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
 
 class FragmentProductList : Fragment() {

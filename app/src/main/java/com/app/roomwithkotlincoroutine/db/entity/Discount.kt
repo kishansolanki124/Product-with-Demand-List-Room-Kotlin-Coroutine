@@ -10,6 +10,3 @@ data class Discount(
     @ColumnInfo(name = "type") val type: String?,
     @ColumnInfo(name = "amount") val amount: Double?
 )
-/**
-none, percentage, fix
- **/

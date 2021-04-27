@@ -2,11 +2,12 @@ package com.app.roomwithkotlincoroutine.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.app.roomwithkotlincoroutine.R
 import com.app.roomwithkotlincoroutine.databinding.ItemSelectedProductsBinding
 import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
+import com.app.roomwithkotlincoroutine.util.AppConstant
 
 class SelectedProductListAdapter(
     private val itemClick: (ProductMuliSelect) -> Unit,
@@ -49,12 +50,6 @@ class SelectedProductListAdapter(
         return this.list
     }
 
-    fun reset() {
-        this.list.clear()
-        notifyDataSetChanged()
-    }
-
-
     override fun getItemCount(): Int = list.size
 
     class HomeOffersViewHolder(
@@ -70,23 +65,34 @@ class SelectedProductListAdapter(
             with(firebaseMessageModel) {
 
                 binding.tvProductName.text = "Name: " + firebaseMessageModel.name
-                binding.tvProductDescription.text = "Description: " + firebaseMessageModel.email
-                binding.tvProductPrice.text = "Price: " + firebaseMessageModel.price.toString()
+                binding.tvProductDescription.text =
+                    "Description: " + firebaseMessageModel.description
+                binding.tvProductPrice.text = "Price: " + binding.tvProductPrice.context.getString(
+                    R.string.rupee,
+                    firebaseMessageModel.price.toString()
+                )
+
                 binding.tvQuantity.text = firebaseMessageModel.quantity.toString()
 
                 if (firebaseMessageModel.amount <= 0) {
-                    binding.llDiscountDetail.visibility = View.GONE
-                    binding.tvDiscount.visibility = View.VISIBLE
                     binding.tvDiscount.text = "Discount: NA"
                 } else {
-                    binding.tvDiscount.visibility = View.GONE
-                    binding.llDiscountDetail.visibility = View.VISIBLE
-                    binding.tvDiscountType.text =
-                        "Discount Type: " + firebaseMessageModel.type.toString() + ", "
-                    binding.tvDiscountAmount.text =
-                        "Amount: " + firebaseMessageModel.amount.toString()
+                    if (firebaseMessageModel.type.toString()
+                        == (AppConstant.DiscountTYpe.AMOUNT)
+                    ) {
+                        binding.tvDiscount.text =
+                            "Discount: " + binding.tvDiscount.context.getString(
+                                R.string.rupee,
+                                firebaseMessageModel.amount.toString()
+                            )
+                    } else {
+                        binding.tvDiscount.text =
+                            "Discount: " + binding.tvDiscount.context.getString(
+                                R.string.percentage_x,
+                                firebaseMessageModel.amount.toInt()
+                            )
+                    }
                 }
-
 
                 binding.ivDelete.setOnClickListener {
                     val position = adapterPosition

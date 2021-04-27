@@ -20,6 +20,6 @@ object DatabaseBuilder {
         Room.databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java,
-            "room-coroutines"
+            "product_and_demand"
         ).build()
 }

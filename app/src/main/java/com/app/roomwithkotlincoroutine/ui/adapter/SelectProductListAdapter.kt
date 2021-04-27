@@ -3,11 +3,12 @@ package com.app.roomwithkotlincoroutine.ui.adapter
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.app.roomwithkotlincoroutine.R
 import com.app.roomwithkotlincoroutine.databinding.ItemProductBinding
 import com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect
+import com.app.roomwithkotlincoroutine.util.AppConstant
 
 class SelectProductListAdapter(private val itemClick: (ProductMuliSelect) -> Unit) :
     RecyclerView.Adapter<SelectProductListAdapter.HomeOffersViewHolder>() {
@@ -47,19 +48,40 @@ class SelectProductListAdapter(private val itemClick: (ProductMuliSelect) -> Uni
             with(firebaseMessageModel) {
 
                 binding.tvProductName.text = "Name: " + firebaseMessageModel.name
-                binding.tvProductDescription.text = "Description: " + firebaseMessageModel.email
-                binding.tvProductPrice.text = "Price: " + firebaseMessageModel.price.toString()
+                binding.tvProductDescription.text =
+                    "Description: " + firebaseMessageModel.description
+                binding.tvProductPrice.text = "Price: " + binding.tvProductPrice.context.getString(
+                    R.string.rupee,
+                    firebaseMessageModel.price.toString()
+                )
                 if (firebaseMessageModel.amount <= 0) {
-                    binding.llDiscountDetail.visibility = View.GONE
-                    binding.tvDiscount.visibility = View.VISIBLE
+                    //binding.llDiscountDetail.visibility = View.GONE
+                    //binding.tvDiscount.visibility = View.VISIBLE
                     binding.tvDiscount.text = "Discount: NA"
                 } else {
-                    binding.tvDiscount.visibility = View.GONE
-                    binding.llDiscountDetail.visibility = View.VISIBLE
-                    binding.tvDiscountType.text =
-                        "Discount Type: " + firebaseMessageModel.type.toString() + ", "
-                    binding.tvDiscountAmount.text =
-                        "Amount: " + firebaseMessageModel.amount.toString()
+                    //binding.tvDiscount.visibility = View.GONE
+                    //binding.llDiscountDetail.visibility = View.VISIBLE
+
+                    if (firebaseMessageModel.type.toString()
+                        == (AppConstant.DiscountTYpe.AMOUNT)
+                    ) {
+                        binding.tvDiscount.text =
+                            "Discount: " + binding.tvDiscount.context.getString(
+                                R.string.rupee,
+                                firebaseMessageModel.amount.toString()
+                            )
+                    } else {
+                        binding.tvDiscount.text =
+                            "Discount: " + binding.tvDiscount.context.getString(
+                                R.string.percentage_x,
+                                firebaseMessageModel.amount.toInt()
+                            )
+                    }
+
+//                    binding.tvDiscountType.text =
+//                        "Discount Type: " + firebaseMessageModel.type.toString() + ", "
+//                    binding.tvDiscountAmount.text =
+//                        "Amount: " + firebaseMessageModel.amount.toString()
                 }
 
                 binding.llProduct.setBackgroundColor(if (firebaseMessageModel.selected) Color.LTGRAY else Color.WHITE)

@@ -149,8 +149,7 @@ class RoomDBViewModel(private val dbHelper: DatabaseHelper) : ViewModel() {
             addUser(
                 Product(
                     name = title,
-                    email = description,
-                    avatar = "",
+                    description = description,
                     price = price,
                     discountId = id.toInt()
                 )

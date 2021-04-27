@@ -50,8 +50,7 @@ class AddDemandActivity : AppCompatActivity() {
                 productMultiSelectList.add(
                     ProductMuliSelect(
                         name = item.name,
-                        email = item.email,
-                        avatar = item.avatar,
+                        description = item.description,
                         type = item.type,
                         discountId = item.discountId,
                         amount = item.amount,

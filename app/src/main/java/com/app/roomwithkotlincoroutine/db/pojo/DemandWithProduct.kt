@@ -13,8 +13,3 @@ data class DemandWithProduct(
     val created_date: Long,
     val updated_date: Long
 ) : Serializable
-
-/**
-total_amount, total_discount, net_amount, created_date, updated_date,
-demandId, productId, quantity, total_amount, total_discount, net_amount, created_date, updated_date
- **/

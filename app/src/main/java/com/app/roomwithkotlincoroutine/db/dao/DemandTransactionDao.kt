@@ -13,8 +13,6 @@ interface DemandTransactionDao {
     @Query("SELECT * FROM demandtransaction")
     suspend fun getAll(): List<DemandTransaction>
 
-    //@Query("SELECT * FROM product join Discount on product.discountId = Discount.id ")
-    //    suspend fun getProductWithDiscount(): List<ProductWithCoupon>
     @Query("SELECT * FROM demandtransaction LEFT join product ON demandtransaction.productId = product.id " +
             "LEFT join discount ON discount.id = product.discountId WHERE demandId = :demandId")
     suspend fun findAllByDemandId(demandId : Int): List<DemandTransactionAndProductMultiSelect>

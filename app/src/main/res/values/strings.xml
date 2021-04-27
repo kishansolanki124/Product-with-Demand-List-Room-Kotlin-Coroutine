@@ -31,4 +31,6 @@
     <string name="Discount">Discount</string>
     <string name="Select_Product">Select Product</string>
     <string name="splash_text">Product with Demand App</string>
+    <string name="rupee">%1$s\u20B9</string>
+    <string name="percentage_x">%d%%</string>
 </resources>

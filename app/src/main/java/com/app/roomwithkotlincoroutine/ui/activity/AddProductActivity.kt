@@ -96,7 +96,7 @@ class AddProductActivity : AppCompatActivity() {
                     else -> {
                         binding.etDiscountAMount.hint = getString(R.string.Discount_Amount)
                         binding.etDiscountAMount.isEnabled = true
-                        binding.etDiscountAMount.filters = arrayOf(InputFilter.LengthFilter(5))
+                        binding.etDiscountAMount.filters = arrayOf(InputFilter.LengthFilter(7))
                     }
                 }
             }

@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/navProduct"
-        android:icon="@drawable/selector_bottom_navigation_profile"
+        android:icon="@drawable/selector_bottom_navigation_product"
         android:title="@string/Product"
         app:showAsAction="always" />
 
@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/navDemand"
-        android:icon="@drawable/selector_bottom_navigation_chat"
+        android:icon="@drawable/selector_bottom_navigation_demand"
         android:title="@string/Demand"
         app:showAsAction="always" />
 
