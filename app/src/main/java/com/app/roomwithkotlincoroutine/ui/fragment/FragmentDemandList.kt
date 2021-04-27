@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.app.roomwithkotlincoroutine.R
 import com.app.roomwithkotlincoroutine.databinding.FragmentDemandListBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
@@ -36,8 +35,6 @@ class FragmentDemandList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        requireActivity().title = getString(R.string.Demand)
 
         binding.fbAdd.setOnClickListener {
             startActivityForResult(

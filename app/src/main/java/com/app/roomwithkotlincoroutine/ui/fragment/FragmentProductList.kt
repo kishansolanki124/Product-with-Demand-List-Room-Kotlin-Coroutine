@@ -7,14 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.app.roomwithkotlincoroutine.R
 import com.app.roomwithkotlincoroutine.databinding.FragmentProductListBinding
 import com.app.roomwithkotlincoroutine.db.DatabaseBuilder
 import com.app.roomwithkotlincoroutine.db.DatabaseHelperImpl
 import com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon
 import com.app.roomwithkotlincoroutine.ui.activity.AddProductActivity
 import com.app.roomwithkotlincoroutine.ui.adapter.ProductListAdapter
-import com.app.roomwithkotlincoroutine.util.*
+import com.app.roomwithkotlincoroutine.util.AppConstant
+import com.app.roomwithkotlincoroutine.util.ViewModelFactory
+import com.app.roomwithkotlincoroutine.util.setRecyclerViewLayoutManager
 import com.app.roomwithkotlincoroutine.viewmodel.RoomDBViewModel
 
 class FragmentProductList : Fragment() {
@@ -34,8 +35,6 @@ class FragmentProductList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        requireActivity().title = getString(R.string.Product)
 
         viewModel = ViewModelProvider(
             this, ViewModelFactory(

@@ -9,7 +9,7 @@ import com.app.roomwithkotlincoroutine.R
 
 class SplashActivity : AppCompatActivity() {
 
-    private var mCountDownTime = 200L //time in milliseconds
+    private var mCountDownTime = 2000L //time in milliseconds
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

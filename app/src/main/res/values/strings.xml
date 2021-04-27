@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Room with Kotlin Coroutine</string>
+    <string name="app_name">Product with Demand App</string>
     <string name="Product">Product</string>
     <string name="Add_Product">Add Product</string>
     <string name="Save_Demand">Save Demand</string>
