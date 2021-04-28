@@ -35,4 +35,6 @@
     <string name="percentage_x">%d%%</string>
     <string name="empty_product_list">Click the \'+\' button to add Product.</string>
     <string name="empty_demand_list">Click the \'+\' button to add Demand.</string>
+    <string name="description">Description: %1$s</string>
+    <string name="name">Name: %1$s</string>
 </resources>

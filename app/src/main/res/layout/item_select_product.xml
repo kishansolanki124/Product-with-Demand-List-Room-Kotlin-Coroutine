@@ -6,7 +6,7 @@
 
         <variable
             name="product"
-            type="com.app.roomwithkotlincoroutine.db.pojo.ProductWithCoupon" />
+            type="com.app.roomwithkotlincoroutine.db.pojo.ProductMuliSelect" />
     </data>
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
